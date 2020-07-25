@@ -10,9 +10,11 @@
             color: white;
             margin: auto;
             max-width: 800px;
+            font-size: 30px;
         }
 
         button {
+            font-size: 20px;
             padding: 5px 10px;
             color: rgb(0, 34, 0);
             background-color: rgb(116, 116, 116);
@@ -23,6 +25,8 @@
             font-style: oblique;
             font-weight: 900;
             transition: all ease 0.3s;
+            width: 42%;
+            height: 5em;
         }
 
         button:hover:not(:disabled) {
@@ -41,6 +45,11 @@
             font-size: 25px;
             font-variant: small-caps;
         }
+
+        .mf-display {
+            display: inline-block;
+            width: 42%;
+        }
     </style>
 </head>
 
@@ -54,20 +63,20 @@
         money: <span id="money-value"></span>
     </p>
     <p>
-         MF: <span id="i-value"></span><span id="MFmulti"> <!--x<span id="MFmultiplier-value"></span> -->
+         <span class="mf-display">MF: <span id="i-value"></span> <!--x<span id="MFmultiplier-value"></span> --></span>
 
             <button id="a-button">add a MF for <span id="a-button-value">5</span> money</button>
     </p>
     <p>
-        MFF: <span id="i2-value"></span>
+        <span class="mf-display">MFF: <span id="i2-value"></span></span>
         <button id="the-button">add a MFF for <span id="the-button-value">20</span> money</button>
     </p>
     <p>
-        MFFF: <span id="i3-value"></span>
+        <span class="mf-display">MFFF: <span id="i3-value"></span></span>
         <button id="other-button">add a MFFF for <span id="other-button-value">1000</span> money</button>
     </p>
     <p>
-        MFFFF: <span id="i4-value"></span>
+        <span class="mf-display">MFFFF: <span id="i4-value"></span></span>
         <button id="third-button">add a MFFFF for 250000 money</button>
     </p>
 
