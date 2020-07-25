@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Money Factory</title>
+    <style>
+        body {
+            background-color: rgb(51, 51, 51);
+            color: white;
+            margin: auto;
+            max-width: 800px;
+        }
+
+        button {
+            padding: 5px 10px;
+            color: rgb(0, 34, 0);
+            background-color: rgb(116, 116, 116);
+            cursor: pointer;
+            border-color: rgb(19, 95, 0);
+            border-style: solid;
+            border-radius: 8px;
+            font-style: oblique;
+            font-weight: 900;
+            transition: all ease 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            color: white;
+            background-color: rgb(70, 173, 70);
+        }
+
+        button:disabled {
+            background-color: rgb(58, 58, 58);
+            cursor: default;
+            color: rgb(77, 0, 0);
+            border-color: rgb(61, 0, 0);
+        }
+
+        .value {
+            font-size: 25px;
+            font-variant: small-caps;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <h1>Money Factory</h1>
+    <p class="value">
+        money: <span id="money-value"></span>
+    </p>
+    <p>
+         MF: <span id="i-value"></span><span id="MFmulti"> <!--x<span id="MFmultiplier-value"></span> -->
+
+            <button id="a-button">add a MF for <span id="a-button-value">5</span> money</button>
+    </p>
+    <p>
+        MFF: <span id="i2-value"></span>
+        <button id="the-button">add a MFF for <span id="the-button-value">20</span> money</button>
+    </p>
+    <p>
+        MFFF: <span id="i3-value"></span>
+        <button id="other-button">add a MFFF for <span id="other-button-value">1000</span> money</button>
+    </p>
+    <p>
+        MFFFF: <span id="i4-value"></span>
+        <button id="third-button">add a MFFFF for 250000 money</button>
+    </p>
+
+
+
+
+    <script>
+        window.addEventListener('load', function () {
+
+            var MFmultiplier = 1;
+
+            // document.getElementById('MFmultiplier-value').innerHTML = MFmultiplier;
+
+            var i3PM = 1000;
+            var i2PM = 20;
+            var iPM = 5;
+            var money = 5;
+            var i = 0;
+            var i2 = 0;
+            var i3 = 0;
+            var i4 = 0;
+            var i_Multiply_Tick
+
+            if(i_Multiply_Tick >= 10) {
+
+                MFmultiplier = MFmultiplier * 2;
+
+            } 
+
+            var iPurchased = 1;
+            var btn0 = document.getElementById('a-button');
+            btn0.addEventListener('click', function () {
+
+                
+
+                i = i + 1;
+                money = money - (iPM * iPurchased);
+                iPurchased = iPurchased * 2;
+                i_Multiply_Tick = i_Multiply_Tick + 1;
+
+                document.getElementById('a-button-value').innerHTML = iPurchased * iPM;
+                // document.getElementById('MFmultiplier-value').innerHTML = MFmultiplier;
+
+            });
+            var i2Purchased = 1;
+            var btn = document.getElementById('the-button');
+            btn.addEventListener('click', function () {
+                i2 = i2 + 1;
+                money = money - (i2PM * i2Purchased);
+                i2Purchased = i2Purchased * 2;
+                document.getElementById('the-button-value').innerHTML = i2Purchased * i2PM;
+            });
+            var i3Purchased = 1
+            var btn2 = document.getElementById('other-button');
+            btn2.addEventListener('click', function () {
+                i3 = i3 + 1;
+                money = money - (i3PM * i3Purchased);
+                i3Purchased = i3Purchased * 2;
+                document.getElementById('other-button-value').innerHTML = i3Purchased * i3PM;
+            });
+
+            var btn3 = document.getElementById('third-button');
+            btn3.addEventListener('click', function () {
+                i4 = i4 + 1;
+                money = money - 250000;
+            });
+            setInterval(function () {
+                //i2 = i2 + 1;
+                money = money + ((i * MFmultiplier) * .1)
+                i = i + (i2 / 5);
+                i2 = i2 + i3 / 5;
+                i3 = i3 + i4 / 5;
+                document.getElementById('i-value').innerHTML = Math.floor(i);
+                document.getElementById('i2-value').innerHTML = Math.floor(i2);
+                document.getElementById('i3-value').innerHTML = Math.floor(i3);
+                document.getElementById('i4-value').innerHTML = Math.floor(i4);
+                document.getElementById('money-value').innerHTML = Math.floor(money);
+                btn0.disabled = money < iPM * iPurchased;
+                // if (money >= 1000) {
+                //     btn.disabled = false;
+                // } else {
+                //     btn.disabled = true;
+                // }
+                btn.disabled = money < i2PM * i2Purchased;
+                // if (money >= 100000) {
+                //     btn2.style.display = 'block';
+                // } else {
+                //     btn2.style.display = 'none';
+                // }
+                btn2.disabled = money < i3PM * i3Purchased;
+                // if (money >= 100000000) {
+                //     btn3.style.display = 'block';
+                // } else {
+                //     btn3.style.display = 'none';
+                // }
+                btn3.disabled = money < 250000;
+            }, 100);
+
+        });
+    </script>
+</body>
+
+</html>
